@@ -5,3 +5,9 @@ class ServerException implements Exception {
 
   ServerException({required this.errorMessageModel});
 }
+
+class LocalException implements Exception {
+  final String message;
+
+  LocalException({required this.message});
+}

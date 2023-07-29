@@ -13,7 +13,7 @@ class MovieModel extends Movie {
 
   factory MovieModel.fromJson(Map<String, dynamic> json) => MovieModel(
         id: json["id"],
-        voteAverage: json['vote_average'],
+        voteAverage: json['vote_average'].toDouble(),
         title: json['title'],
         overview: json['overview'],
         releaseDate: json['release_date'],

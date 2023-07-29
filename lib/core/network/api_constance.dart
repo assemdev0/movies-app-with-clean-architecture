@@ -8,4 +8,6 @@ class ApiConstance {
   static const String popularEndPoint = "/movie/popular";
 
   static const String topRatedEndPoint = "/movie/top_rated";
+
+  static String imageUrl(String path) => 'https://image.tmdb.org/t/p/w500$path';
 }

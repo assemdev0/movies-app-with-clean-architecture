@@ -9,5 +9,9 @@ class ApiConstance {
 
   static const String topRatedEndPoint = "/movie/top_rated";
 
+  static String movieDetails(int id) => '/movie/$id';
+
+  static String recommendation(int id) => '/movie/$id/recommendations';
+
   static String imageUrl(String path) => 'https://image.tmdb.org/t/p/w500$path';
 }

@@ -3,12 +3,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/movies/presentation/controller/movies_details/movies_details_bloc.dart';
 
 import '../../../core/network/api_constance.dart';
-import '../../../core/utilities/dummy.dart';
 import '../../../core/utilities/enums.dart';
-import '../controller/movies_bloc.dart';
-import '../controller/movies_state.dart';
+import '../controller/movies/movies_bloc.dart';
+import '../controller/movies/movies_state.dart';
+import '../screens/movie_detail_screen.dart';
 
 class NowPlayingMoviesWidget extends StatelessWidget {
   const NowPlayingMoviesWidget({Key? key}) : super(key: key);
@@ -16,6 +17,8 @@ class NowPlayingMoviesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MoviesBloc, MoviesState>(
+      buildWhen: (previous, current) =>
+          previous.nowPlayingRequestState != current.nowPlayingRequestState,
       builder: (context, state) {
         switch (state.nowPlayingRequestState) {
           case RequestState.loading:
@@ -46,7 +49,13 @@ class NowPlayingMoviesWidget extends StatelessWidget {
                     return GestureDetector(
                       key: const Key('openMovieMinimalDetail'),
                       onTap: () {
-                        /// TODO : NAVIGATE TO MOVIE DETAILS
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => MovieDetailScreen(
+                              id: item.id,
+                            ),
+                          ),
+                        );
                       },
                       child: Stack(
                         children: [
